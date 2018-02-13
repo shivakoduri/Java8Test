@@ -1,0 +1,94 @@
+Constructor References :
+
+    Simillar to Method References, you can create references to the constructors. 
+    The only difference is in Constructor references the method name is "new". 
+
+syntax is : 
+ClassName :: new
+
+If the class has multiple constructors which constructor the compiler refers ? 
+The solution is simple , based on the context, the compiler refers the appropriate constructor. 
+For example if you want to create a string from character array, the compilere referes the string constructor which takes character arry as argument.
+ 
+You can assign a constructor reference to any functional interface which has a metho compatible with the constructor. 
+Lets see a simple example. In this example, i am going to refer a Constructor from String class. 
+
+1. Define a functional interface. 
+
+package com.speakingcs.fis;
+
+public interface FuncIf {
+    String strFunc(char[] chArray);
+}
+
+
+2. Now assign a String constructor reference to the functional interface which we have created just now. 
+
+package com.speakingcs.lambdas;
+import com.speakingcs.fis.FuncIf;
+public class StringCreator {
+    public static void main(String[] args) {
+        FuncIf fi = String::new;
+        char[] charArray = {'s','p','e','a','k','i','n','g','c','s'};
+        System.out.println(fi.strFunc(charArray));
+    }
+}
+
+Note that, in the program strFunc() of FuncIf interface returns a reference of type String. 
+In the program, the expression "String::new" creates a constructor reference to the String's constructor. 
+Here the method StrFunc() takes a Character array as an argument, so the parameterized constructor String(char[] charArray) is referred here. 
+The equivalent lambda expression is 
+
+charArray -> new String(charArray);
+
+So finally, when ever you call the method strFunc() on FuncIf reference, a String object is constructed and returned.
+Constructor References For Arrays :
+    You can create constructor references with array types. 
+    for example, if you want to create a integer array, the constructor reference is "int[] :: new" and the parameter is length of the array.
+
+The equivalent lambda expression is 
+ x -> new int[x];
+ In java, it is not possible to create an array of generic type T. The statement T[] genArr = new T[10]; 
+ returns a compiler error saying cannot create generic array of type T. 
+ Because of type erasure in java, the expression new T[n] would be erased to new Object[n]. 
+ with the help of constructor references for Arrays, we can create any type of array on the fly. 
+
+Here is a simple example to create an integer arry using constructor references. 
+package com.speakingcs.lambda;
+
+interface FuncIf {    
+    int[] intArrMaker(int noOfEle);    
+}
+
+public class ConstructorRefDemo {
+    public static void main(String[] args) {
+        FuncIf fi = int[] :: new;        
+        int[] intArr = fi.intArrMaker(10);    
+        for(int i = 0; i < intArr.length ; i++) {
+            intArr[i] = i*10;
+            System.out.print(" "+ i);
+        }
+    }   
+}
+Constructor references to generic classes are created in the same fashion. 
+The only difference is that you have to specify the type argument. lets write a program that returns different arrays at different situations. 
+interface GenIf< T > {
+
+     T[] genArrMaker(int noOfEle);
+
+}
+
+public class ConstructorRefDemo {
+    public static void main(String[] args) {        
+        GenIf<String> gi = String[] :: new;        
+        String[] objArr = gi.genArrMaker(10);       
+        System.out.println();
+        for(int i = 0; i < objArr.length ; i++) {
+            objArr[i] = "\""+i+"\"";
+            System.out.print(" "+ objArr[i]);
+        }
+    }    
+}
+In the above program, GenIf<T> is a generic Functional interface. notice that,
+ we are assinging constructor reference of type String to this interface. 
+ So it constructs and returns array of type String. If you assign Integer Constructor reference, it will return Integer Array.
