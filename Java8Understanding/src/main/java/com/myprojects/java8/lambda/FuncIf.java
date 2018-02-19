@@ -1,4 +1,4 @@
-package com.myprojects.java8.lambda.constructorRef.eg1;
+package com.myprojects.java8.lambda;
 
 public interface FuncIf {
 	
