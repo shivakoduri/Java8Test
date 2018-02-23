@@ -2,12 +2,17 @@ package com.myprojects.java8.model;
 
 public class Dish {
 	
-	private final String name="";
-	private final boolean vegeterian = false;
+	private final String name;
+	private final boolean vegeterian;
 	private int calories;
 	private Type type;
 	
-	
+	public Dish(String name, boolean vegeterian, int calories, Type type){
+		this.name = name;
+		this.vegeterian = vegeterian;
+		this.calories = calories;
+		this.type= type;
+	}
 	
 	public int getCalories() {
 		return calories;

@@ -2,6 +2,10 @@ package com.myprojects.java8.samples.streams;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.myprojects.java8.model.Dish;
+import com.myprojects.java8.samples.data.ApplicationDataRepository;
 
 public class StreamsDemo {
 
@@ -20,6 +24,9 @@ public class StreamsDemo {
 	}
 	
 	private static void truncatingStream(){
+		List<Dish> dishes = ApplicationDataRepository.getDishes().stream().filter(d -> d.getCalories() > 300).limit(3).collect(Collectors.toList());
+		
+		dishes.stream().map(Dish::getName).forEach(System.out::println);
 		
 	}
 
