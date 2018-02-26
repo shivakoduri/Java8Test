@@ -244,7 +244,8 @@ public class StreamsDemo {
 				.stream()
 				.map(Transaction::getTrader)
 				.filter(trader -> trader.getCity().equals("Cambridge"))
-				.distinct().sorted(Comparator.comparing(Trader::getName))
+				.distinct()
+				.sorted(Comparator.comparing(Trader::getName))
 				.collect(Collectors.toList());
 		
 //		4. Return a string of all traders’ names sorted alphabetically.
