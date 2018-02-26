@@ -267,19 +267,30 @@ public class StreamsDemo {
 		
 //		5. Are any traders based in Milan?
 		
-		boolean milanBased = ApplicationDataRepository.getTransactions().stream().anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan")); 
+		boolean milanBased = ApplicationDataRepository.getTransactions()
+				.stream()
+				.anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan")); 
 		
 //		6. Print all transactions’ values from the traders living in Cambridge.
 		
-		ApplicationDataRepository.getTransactions().stream().filter(t -> "Cambridge".equals(t.getTrader().getCity())).map(Transaction::getValue).forEach(System.out::println);
+		ApplicationDataRepository.getTransactions()
+		.stream()
+		.filter(t -> "Cambridge".equals(t.getTrader().getCity()))
+		.map(Transaction::getValue)
+		.forEach(System.out::println);
 		
 //		7. What’s the highest value of all the transactions?
 		
-		Optional<Integer> highestValue = ApplicationDataRepository.getTransactions().stream().map(Transaction::getValue).reduce(Integer::max);
+		Optional<Integer> highestValue = ApplicationDataRepository.getTransactions()
+				.stream()
+				.map(Transaction::getValue)
+				.reduce(Integer::max);
 		
 //		8. Find the transaction with the smallest value.
 		
-		Optional<Transaction> smallestTransactions = ApplicationDataRepository.getTransactions().stream().reduce( (t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
+		Optional<Transaction> smallestTransactions = ApplicationDataRepository.getTransactions()
+				.stream()
+				.reduce( (t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
 		
 	}
 	
