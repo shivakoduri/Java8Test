@@ -1,11 +1,17 @@
 package com.myprojects.java8.samples.streams;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.myprojects.java8.model.Dish;
@@ -34,6 +40,14 @@ public class StreamsDemo {
 		reducingOperations(); //a stream is reduced to a value
 		
 		traders_transaction_Operations();//traders and transactions examples
+		
+		numericStreamsExample();
+		
+		optionalInt();
+		
+		numericRanges();
+		
+		buildingStreams();
 	}
 	
 	private static void filterUniqueElements(){
@@ -292,6 +306,115 @@ public class StreamsDemo {
 				.stream()
 				.reduce( (t1, t2) -> t1.getValue() < t2.getValue() ? t1 : t2);
 		
+		Optional<Transaction> smallestTransaction = ApplicationDataRepository.getTransactions()
+				.stream()
+				.min(Comparator.comparing(Transaction::getValue));    //stream supports the methods min and max that take a Comparator as
+				                                                      //argument to specify which key to compare with when calculating the minimum or maximum:
+	}
+	
+	
+	private static void numericStreamsExample(){
+		
+		//calculate the number of calories in the menu 
+		int calories_with_reduce = ApplicationDataRepository.getDishes().stream().map(Dish::getCalories).reduce(0, Integer::sum);
+		
+		//In the above code there’s an insidious boxing cost. Behind the scenes each
+		//Integer needs to be unboxed to a primitive before performing the summation
+		
+//		int calories_with_sum = ApplicationDataRepository.getDishes().stream().map(Dish::getCalories).sum();  //The problem is that the method map generates a Stream<T>
+		
+		//Eventhough the elements of the stream are of type Integer, the Streams interface doesn’t define asum method
+		//Say you had only a Stream<Dish> like the menu; it wouldn’t make any sense to be able to sum dishes.
+		
+//		the Streams API also supplies primitive stream[IntStream,DoubleStream, and LongStream] specializations that support specialized methods to work with streams of numbers
+		
+		
+		int calories_with_sum = ApplicationDataRepository.getDishes().stream().mapToInt(Dish::getCalories).sum();
+		//the method mapToInt extracts all the calories from each dish (represented as an Integer) and returns an IntStream as the result (rather than a Stream<Integer>).
+		
+		
+		//
+		//To convert from a primitive stream to a general stream(each int will be boxed to anInteger) you can use the method boxed as follows:
+		
+		IntStream  intStream = ApplicationDataRepository.getDishes().stream().mapToInt(Dish::getCalories);
+		Stream<Integer> stream = intStream.boxed();
+	}
+	
+	private static void optionalInt(){
+//		The sum example was convenient because it has a default value: 0. But if you want to calculate
+//		the maximum element in an IntStream, you need something different because 0 is a wrong result.
+		
+//		There’s a primitive specialized version of Optional as well for the three primitive
+//		stream specializations: OptionalInt, OptionalDouble, and OptionalLong.
+		
+		OptionalInt maxCalories = ApplicationDataRepository.getDishes()
+				.stream()
+				.mapToInt(Dish::getCalories)
+				.max();
+		
+		 //process the OptionalInt explicitly to define a default value if there’s no maximum:
+		int max = maxCalories.orElse(1); //provide an explicit default value if there's no value.
+	}
+	
+	private static void numericRanges(){
+		//Java 8 introduces two static methods available on IntStream and LongStream to help generate such ranges: range and rangeClosed.
+		
+		IntStream evenNumbers = IntStream.rangeClosed(1, 100).filter(n -> n%2 == 0);
+		System.out.println(evenNumbers.count());
+		
+	}
+	
+	private static void buildingStreams(){
+		//create a stream from a sequence of values, from an array, from a file, and even from a generative function to create infinite streams
+		
+		//streams from values
+		streamsFromValues();
+		streamsFromArrays();
+		streamsFromFiles();
+		streamsFromFunctions(); //creating infinite streams
+	}
+	
+	private static void streamsFromValues(){
+		//create a stream with explicit values by using the static method Stream.of
+		Stream<String> stream = Stream.of("Java 8 ", "Lambdas ", "In ", "Action");
+		stream.map(String::toUpperCase).forEach(System.out::println);
+		
+//		empty stream using the empty method as follows:
+		Stream<String> emptyStream = Stream.empty();
+	}
+	
+	private static void streamsFromArrays(){
+		int[] numbers = {2, 3, 5, 7, 11, 13};
+		int sum = Arrays.stream(numbers).sum();
+	}
+	
+	
+	private static void streamsFromFiles(){
+		long uniqueWords = 0;
+		try(Stream<String> lines =
+				Files.lines(Paths.get("data.txt"), Charset.defaultCharset())){
+			uniqueWords = lines.flatMap(line -> Arrays.stream(line.split(" "))).distinct().count();
+		}catch(IOException e){
+			
+		}
+		
+	}
+	
+	
+	private static void streamsFromFunctions(){ 
+//		    generate a stream from a function: Stream.iterate and Stream.generate. These two operations let you create what we call an infinite
+//			stream: a stream that doesn’t have a fixed size like when you create a stream from a fixed collection.
+		
+		//Stream.iterate
+		Stream.iterate(0, n -> n + 2)
+		.limit(10)
+		.forEach(System.out::println);
+		
+		
+		//Stream.generate
+		Stream.generate(Math::random)
+		.limit(5)
+		.forEach(System.out::println);
 	}
 	
 
