@@ -18,7 +18,6 @@ public class CollectingDataWithStreams {
 		//Grouping transactions by currency
 		groupingTransactions();
 		
-		
 	}
 	
 	public void groupingTransactions(){
@@ -36,10 +35,11 @@ public class CollectingDataWithStreams {
 			transactionForCurrencies.add(transaction);
 		}
 		
-		//using Collectors groupingBy
+		//Grouping transactions by currency in functional style
 		Map<Currency, List<Transaction>> transactionsByCurrencies =
 				LoadData.getTransactions().stream().collect(Collectors.groupingBy(Transaction::getCurrency));
-		
+//		the argument passed to the collect method is an implementation of the Collector
+//		interface, which is a recipe for how to build a summary of the elements in the Stream.
 	}
 
 }
