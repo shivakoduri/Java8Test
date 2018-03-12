@@ -1,4 +1,4 @@
-package com.myprojects.java8.examples.concepts;
+package com.myprojects.java8.examples.concepts.intStreams;
 
 import java.util.stream.IntStream;
 
