@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 public class IntStreamsMethodsExamples {
 
 	public static void main(String[] args) {
+		//http://www.java2s.com/Tutorials/Java/java.util.stream/IntStream/index.htm
+		
 		//IntStream allMatch(IntPredicate predicate) returns whether all elements of this stream match the provided predicate.
 		allMatchWith();
 		
