@@ -1,4 +1,4 @@
-package com.myproject.java8.samples.model;
+package com.myprojects.java8.model;
 
 public enum Currency {
 	

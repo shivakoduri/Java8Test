@@ -1,4 +1,4 @@
-package com.myproject.java8.samples.model;
+package com.myprojects.java8.model;
 
 import java.util.Collections;
 import java.util.HashSet;

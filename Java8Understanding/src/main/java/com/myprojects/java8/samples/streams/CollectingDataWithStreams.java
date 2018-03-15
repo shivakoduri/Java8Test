@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import com.myproject.java8.samples.model.Currency;
-import com.myproject.java8.samples.model.Transaction;
 import com.myprojects.java8.model.CaloricLevel;
+import com.myprojects.java8.model.Currency;
 import com.myprojects.java8.model.Dish;
+import com.myprojects.java8.model.Transaction_;
 import com.myprojects.java8.samples.data.ApplicationDataRepository;
 import com.myprojects.java8.samples.data.LoadData;
 
@@ -160,10 +160,10 @@ public class CollectingDataWithStreams {
 	private void groupingTransactions(){
 		
 		//Grouping transactions by currency in imperative style
-		Map<Currency, List<Transaction>> transactionByCurrencies = new HashMap<>();
-		for(Transaction transaction : LoadData.getTransactions()){
+		Map<Currency, List<Transaction_>> transactionByCurrencies = new HashMap<>();
+		for(Transaction_ transaction : LoadData.getTransactions()){
 			Currency currency = transaction.getCurrency();
-			List<Transaction> transactionForCurrencies = transactionByCurrencies.get(currency);
+			List<Transaction_> transactionForCurrencies = transactionByCurrencies.get(currency);
 			
 			if(transactionForCurrencies == null){
 				transactionForCurrencies = new ArrayList<>();
@@ -173,8 +173,8 @@ public class CollectingDataWithStreams {
 		}
 		
 		//Grouping transactions by currency in functional style
-		Map<Currency, List<Transaction>> transactionsByCurrencies =
-				LoadData.getTransactions().stream().collect(groupingBy(Transaction::getCurrency));
+		Map<Currency, List<Transaction_>> transactionsByCurrencies =
+				LoadData.getTransactions().stream().collect(groupingBy(Transaction_::getCurrency));
 //		the argument passed to the collect method is an implementation of the Collector
 //		interface, which is a recipe for how to build a summary of the elements in the Stream.
 	}

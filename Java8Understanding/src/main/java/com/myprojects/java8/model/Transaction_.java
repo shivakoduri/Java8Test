@@ -1,11 +1,11 @@
-package com.myproject.java8.samples.model;
+package com.myprojects.java8.model;
 
-public class Transaction {
+public class Transaction_ {
 
 	private final Currency currency;
 	private final double value;
 
-	public Transaction(Currency currency, double value) {
+	public Transaction_(Currency currency, double value) {
 		this.currency = currency;
 		this.value = value;
 	}

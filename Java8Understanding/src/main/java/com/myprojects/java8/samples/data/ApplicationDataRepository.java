@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.myproject.java8.samples.model.SalesTerritory;
 import com.myprojects.java8.model.Dish;
+import com.myprojects.java8.model.SalesTerritory;
 import com.myprojects.java8.model.Trader;
 import com.myprojects.java8.model.Transaction;
 

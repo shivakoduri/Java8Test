@@ -2,11 +2,10 @@ package com.myprojects.java8.examples.concepts;
 
 import static java.util.AbstractMap.SimpleEntry;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
-import com.myproject.java8.samples.model.SalesTerritory;
+import com.myprojects.java8.model.SalesTerritory;
 import com.myprojects.java8.samples.data.ApplicationDataRepository;
 
 public class FlatMapExamples {
