@@ -32,7 +32,7 @@ public class CollectorsToMapDemo {
         // if want to return LinkedHashMap, need to pass supplier as LinkedHashMap::new
 
         // toMap(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction, Supplier mapSupplier)
-        LinkedHashMap<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x,y) ->x+", "+y, LinkedHashMap::new));
+        LinkedHashMap<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x,y) -> x+", "+y, LinkedHashMap::new));
         map.forEach((x,y) -> System.out.println("Key:"+x+", Value:"+y));
 
     }
