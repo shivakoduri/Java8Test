@@ -1,15 +1,15 @@
 package com.myprojects.java8.forums.examples.forum1;
 
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import com.myprojects.java8.forums.examples.model.Person1;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamCollectDemo {
 
     public static void main(String... args){
 
-        //Stream.collect using Supplier, Accumulator and Combiner
+        //Stream.collect using Supplier, Accumulator andCombiner
         streamCollect();
 
         //Stream.collect() using Collector
@@ -32,6 +32,13 @@ public class StreamCollectDemo {
     }
 
     private static void toMapExample(){
+        List<Person1> list = new ArrayList<>();
+        list.add(new Person1(100, "Mohan"));
+        list.add(new Person1(200, "Sohan"));
+        list.add(new Person1(300, "Mahesh"));
+
+        Map<Integer, String> map = list.stream().collect(Collectors.toMap(Person1::getId, Person1::getName));
+        map.forEach((x,y) -> System.out.println("Key:" + x +", Value:" + y));
 
     }
 
