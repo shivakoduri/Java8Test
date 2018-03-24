@@ -3,10 +3,7 @@ package com.myprojects.java8.forums.examples.forum1;
 import com.myprojects.java8.forums.examples.model.Line;
 import com.myprojects.java8.forums.examples.util.StatisticsUtility;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.function.IntBinaryOperator;
 import java.util.stream.Collectors;
 
@@ -22,6 +19,38 @@ public class SumDemo {
 
         //Sum of List of Array Example
         sumOfListOfArrayDemo();
+
+        //Sum of Map Example
+        sumOfMapValues();
+
+    }
+
+    private static void sumOfMapValues(){
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1,12);
+        map.put(2,24);
+        map.put(3,10);
+
+        System.out.println("---Using IntStream.sum()---");
+        int sum = map.values().stream().mapToInt(i->1).sum();
+        System.out.println("Sum:" + sum);
+
+        System.out.println("--Using BinaryOperator");
+        sum = map.values().stream().reduce(0, Integer::sum);
+        System.out.println("Sum:" + sum);
+
+        System.out.println("--Using Collectors.summingInt()---");
+        sum = map.values().stream().collect(Collectors.summingInt(i ->1));
+        System.out.println("Sum:" + sum);
+
+        System.out.println("--Using Collectors.summarizingInt()---");
+        IntSummaryStatistics stats = map.values().stream().collect(Collectors.summarizingInt(i->1));
+        System.out.println("Sum:"+stats.getSum());
+
+        System.out.println("--Using custom method--");
+        sum = map.values().stream().reduce(0, StatisticsUtility::addIntData);
+        System.out.println("Sum:" + sum);
+
     }
 
     private static void sumOfListOfArrayDemo(){
@@ -36,8 +65,13 @@ public class SumDemo {
         int sum = list.stream().flatMap(a->Arrays.stream(a)).collect(Collectors.summingInt(i->i));
         System.out.println("Sum:" + sum);
 
+        System.out.println("--Using Collectors.summarizingInt()---");
+        IntSummaryStatistics stats = list.stream().flatMap(a -> Arrays.stream(a)).collect(Collectors.summarizingInt(i -> 1));
+        System.out.println(stats.getSum());
 
-
+        System.out.println("--Using IntStream.sum()--");
+        sum = list.stream().flatMap(a->Arrays.stream(a)).mapToInt(Integer::intValue).sum();
+        System.out.println("Sum:" + sum);
     }
 
     private static void sumOfListDemo(){
