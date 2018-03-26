@@ -1,0 +1,2 @@
+Stream flatMap with Files
+It reads all the lines of the file as a stream
