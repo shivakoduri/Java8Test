@@ -1,6 +1,7 @@
 package com.myprojects.java8.forums.examples.forum1;
 
 import com.myprojects.java8.forums.examples.comparator.IntegerComparator;
+import com.myprojects.java8.forums.examples.model.Person3;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,6 +51,20 @@ public class CollectorsDemo {
         toMapExample();
 
         //Collectors.mapping
+        mappingDemo();
+    }
+
+    private static void mappingDemo(){
+        List<Person3> list = Person3.getList();
+        Map<Integer, String> nameByAge = list
+                .stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Person3::getAge,
+                                Collectors.mapping(
+                                        Person3::getName,
+                                        Collectors.joining(","))));
+        nameByAge.forEach((k,v)-> System.out.println("Age:"+k+", Persons:"+v));
     }
 
     private static void toMapExample(){
