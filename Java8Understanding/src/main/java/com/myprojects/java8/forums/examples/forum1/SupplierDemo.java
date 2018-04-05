@@ -1,11 +1,12 @@
 package com.myprojects.java8.forums.examples.forum1;
 
 import com.myprojects.java8.forums.examples.model.Item;
+import com.myprojects.java8.forums.examples.model.SupplierItem;
 
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
-import java.util.function.IntSupplier;
-import java.util.function.LongSupplier;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.*;
+import java.util.stream.Stream;
 
 public class SupplierDemo {
 
@@ -21,6 +22,39 @@ public class SupplierDemo {
 
         //DoubleSupplier
         doubleSupplier();
+
+        //Supplier to return Object of a Class
+        supplierReturnObject();
+
+        //Supplier to Fetch Method of an Object
+        supplierFetchMethod();
+
+        //Supplier as an argument with Stream API
+        supplierWithStream();
+
+    }
+
+    private static void supplierWithStream(){
+        List<SupplierItem> list = new ArrayList<>();
+        list.add(new SupplierItem("AA"));
+        list.add(new SupplierItem("BB"));
+        list.add(new SupplierItem("CC"));
+
+        Stream<String> names = list.stream().map(SupplierItem::getName);
+        names.forEach(n-> System.out.println(n));
+
+    }
+
+    private static void supplierFetchMethod(){
+        Supplier<String> supplier = SupplierItem::getStaticVal;
+        String val = supplier.get();
+        System.out.println("Calling Method:"+val);
+    }
+
+    private static void supplierReturnObject(){
+        Supplier<SupplierItem> supplier = SupplierItem::new;
+        SupplierItem item = supplier.get();
+        System.out.println(item.getMsg());
     }
 
     private static void doubleSupplier(){
