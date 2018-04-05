@@ -2,8 +2,8 @@ package com.myprojects.java8.model;
 
 public class Trader {
 
-	private final String name;
-	private final String city;
+	private String name;
+	private String city;
 
 	public Trader(String n, String c) {
 		this.name = n;
@@ -18,7 +18,15 @@ public class Trader {
 		return this.city;
 	}
 
-	public String toString() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String toString() {
 		return "Trader:" + this.name + " in " + this.city;
 	}
 
