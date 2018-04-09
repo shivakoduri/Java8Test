@@ -11,7 +11,8 @@ public class LoadData {
 	
 	
 	public static List<Transaction_> getTransactions(){
-		List<Transaction_> transactions = Arrays.asList( new Transaction_(Currency.EUR, 1500.0),
+		List<Transaction_> transactions = Arrays.asList(
+				new Transaction_(Currency.EUR, 1500.0),
 		        new Transaction_(Currency.USD, 2300.0),
 		        new Transaction_(Currency.GBP, 9900.0),
 		        new Transaction_(Currency.EUR, 1100.0),
