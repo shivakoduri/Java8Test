@@ -15,24 +15,30 @@ public class CollectorsDemo {
         averagingDouble();
         averagingInt();
         averagingLong();
-        collectingAndThen();
-        counting();
+
         filtering(); //Java 9 has filtering method
         flatMapping(); //Java 9 has flatMapping method
-        groupingBy();
-        groupingByConcurrent();
-        joining();
-        mapping();
+
         maxBy();
         minBy();
+        groupingBy();
         partiontingBy();
+        groupingByConcurrent();
+
+        counting();
+        joining();
+        mapping();
         reducing();
+        collectingAndThen();
+
         summarizingDouble();
         summarizingInt();
         summarizingLong();
+
         summingDouble();
         summingInt();
         summingLong();
+
         toCollection();
         toConcurrentMap();
         toList();
@@ -277,14 +283,20 @@ public class CollectorsDemo {
         // converts the type R (which returned from the downstream collector) to a final resultant type RR.
 
         Stream<String> s = Stream.of("apple", "banana", "orange");
-        List<String> synchronizedList = s.collect(Collectors.collectingAndThen(Collectors.toList(), Collections::synchronizedList));
+        List<String> synchronizedList = s.collect(Collectors.collectingAndThen(
+                                                                                Collectors.toList(),
+                                                                                Collections::synchronizedList));
         System.out.println(synchronizedList);
     }
 
     private static void averagingLong(){
         //The method Collectors#averagingLong converts each stream elements to long per user provided
         // mapper function and returns the arithmetic mean of those long values.
-        Stream<BigDecimal> s = Stream.iterate(BigDecimal.ONE, bigDecimal -> bigDecimal.add(BigDecimal.ONE)).limit(10).peek(System.out::println);
+        Stream<BigDecimal> s = Stream.iterate(
+                                              BigDecimal.ONE,
+                                              bigDecimal -> bigDecimal.add(BigDecimal.ONE))
+                                      .limit(10)
+                                      .peek(System.out::println);
         Double d = s.collect(Collectors.averagingLong(BigDecimal::longValue));
         System.out.println("average:"+ d);
     }
@@ -292,8 +304,14 @@ public class CollectorsDemo {
     private static void averagingInt(){
         //The method Collectors#averagingInt converts each stream elements to int per user
         // provided mapper function and returns the arithmetic mean of those integers.
-        Stream<BigDecimal> s = Stream.iterate(BigDecimal.ONE, bigDecimal -> bigDecimal.add(BigDecimal.ONE)).limit(10).peek(System.out::println);
-        Double d = s.collect(Collectors.averagingInt(BigDecimal::intValue));
+        Stream<BigDecimal> s = Stream.iterate(
+                                              BigDecimal.ONE,
+                                              bigDecimal -> bigDecimal.add(BigDecimal.ONE))
+                                     .limit(10)
+                                     .peek(System.out::println);
+        Double d = s.collect(
+                             Collectors.averagingInt(
+                                                     BigDecimal::intValue));
         System.out.println("average:" + d);
     }
 
@@ -301,8 +319,14 @@ public class CollectorsDemo {
         // The method Collectors#averagingDouble converts the stream elements to primitive double per user provided mapper
         //function and returns the arithmetic mean of those doubles.
 
-        Stream<BigDecimal> s = Stream.iterate(BigDecimal.ONE, bigDecimal -> bigDecimal.add(BigDecimal.ONE)).limit(10).peek(System.out::println);
-        Double d = s.collect(Collectors.averagingDouble(BigDecimal::doubleValue));
+        Stream<BigDecimal> s = Stream.iterate(
+                                              BigDecimal.ONE,
+                                              bigDecimal -> bigDecimal.add(BigDecimal.ONE))
+                                     .limit(10)
+                                     .peek(System.out::println);
+        Double d = s.collect(
+                             Collectors.averagingDouble(
+                                                        BigDecimal::doubleValue));
         System.out.println("average:" + d);
 
     }

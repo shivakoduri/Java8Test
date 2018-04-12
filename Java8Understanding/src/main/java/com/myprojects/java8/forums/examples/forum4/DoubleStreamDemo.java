@@ -17,6 +17,20 @@ public class DoubleStreamDemo {
         builder();
         collect();
         concat();
+        count();
+        distinct();
+    }
+
+    private static void distinct(){
+        DoubleStream ds = DoubleStream.of(1.2, 1.3, 1.2, 1.4, 1.3, 1.4);
+        DoubleStream ds2 = ds.distinct();
+        ds2.forEach(System.out::println);
+    }
+
+    private static void count(){
+        DoubleStream ds = DoubleStream.of(1.2, -1.3, 1.4, -1.5, -1.7);
+        long count = ds.count();
+        System.out.println(count);
     }
 
     private static void concat(){
