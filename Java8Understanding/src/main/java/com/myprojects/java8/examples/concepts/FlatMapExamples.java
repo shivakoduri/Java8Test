@@ -17,7 +17,8 @@ public class FlatMapExamples {
 	
 	private static void getSalesTerritories(){
 		
-		System.out.println( "We can use 'flatMap' in combination with the 'AbstractMap.SimpleEntry' class to flatten a hierarchical data-structure to a set of Key/Value pairs..." );
+		System.out.println( "We can use 'flatMap' in combination with the 'AbstractMap.SimpleEntry' " +
+				"class to flatten a hierarchical data-structure to a set of Key/Value pairs..." );
 	    getAllTerritories()
 	    .stream()
 	    .flatMap( t -> t.getGeographicExtents()
