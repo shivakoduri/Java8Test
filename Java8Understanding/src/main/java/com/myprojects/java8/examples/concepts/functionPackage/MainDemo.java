@@ -28,7 +28,8 @@ public class MainDemo {
         System.out.println(bi.test(2, 3));
 
         //Below code show how to use BiPredicate as function parameter
-
+        boolean result = compare((a,b)->a/2==b, 10, 5);
+        System.out.println("Compare result:" + result);
 
     }
 
@@ -62,5 +63,9 @@ public class MainDemo {
             return x+y;
         };
         System.out.println(bi.apply("testing", " biFunction"));
+    }
+
+    private static boolean compare(BiPredicate<Integer, Integer> bi, Integer i1, Integer i2){
+        return bi.test(i1, i2);
     }
 }
