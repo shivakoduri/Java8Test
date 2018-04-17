@@ -2,20 +2,34 @@ package com.myprojects.java8.examples.concepts.functionPackage;
 
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.BinaryOperator;
 
 public class MainDemo {
 
     public static void main(String... args){
 
-        //BiConsumer
-        biConsumerDemo();
+        biConsumerDemo();         // - BiConsumer
+        biFunctionDemo();         // - BiFunction
+        binaryOperatorDemo();     // - BinaryOperator
+        biPredicateDemo();        // - BiPredicate
+    }
 
-        //BiFunction
-        biFunctionDemo();
+    private static void biPredicateDemo(){
+        //BiPredicate represents a predicate which is a boolean-valued function of two arguments.
 
-        //BinaryOperator
-        binaryOperatorDemo();
+        // Method
+        //BiPredicate test
+        //BiPredicate and
+        //BiPredicate negate
+        //BiPredicate or
+
+        BiPredicate<Integer, Integer> bi = (x,y) -> x> y;
+        System.out.println(bi.test(2, 3));
+
+        //Below code show how to use BiPredicate as function parameter
+
+
     }
 
     private static void binaryOperatorDemo(){
