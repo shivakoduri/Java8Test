@@ -47,7 +47,6 @@ public class DoubleStreamDemo {
         sum();
         summaraStatistics();
         toArray();
-
     }
 
     private static void toArray(){
