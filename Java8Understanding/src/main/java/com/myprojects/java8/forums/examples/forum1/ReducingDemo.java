@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class ReducingDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         ReduceDemoStudent s1 = new ReduceDemoStudent("Shyam", 22, "A");
         ReduceDemoStudent s2 = new ReduceDemoStudent("Ram", 23, "A");
@@ -24,10 +24,10 @@ public class ReducingDemo {
 
         eldestByClass
                 .forEach(
-                        (k,v)->
+                        (k, v) ->
                                 System.out.println(
-                                        "Class:"+k+", " +
-                                        "Age:"+ ((Optional<ReduceDemoStudent>)v).get().getAge()+"," +
-                                        "Name:"+((Optional<ReduceDemoStudent>)v).get().getName()));
+                                        "Class:" + k + ", " +
+                                                "Age:" + ((Optional<ReduceDemoStudent>) v).get().getAge() + "," +
+                                                "Name:" + ((Optional<ReduceDemoStudent>) v).get().getName()));
     }
 }

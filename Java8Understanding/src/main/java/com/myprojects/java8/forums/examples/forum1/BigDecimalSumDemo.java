@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class BigDecimalSumDemo {
 
-    public static  void main(String... args){
+    public static void main(String... args) {
 
         //BigDecimal Sum with Lambda Expression
         bigDecimalSumUsingList();
@@ -24,26 +24,26 @@ public class BigDecimalSumDemo {
         bigDecimalSumUsingMap();
     }
 
-        private static void bigDecimalSumUsingMap(){
-            Map<Integer, BigDecimal> map = new HashMap<>();
-            map.put(1, new BigDecimal("45.23"));
-            map.put(2, new BigDecimal("55.43"));
-            map.put(3, new BigDecimal("65.21"));
-            map.put(4, new BigDecimal("35.73"));
+    private static void bigDecimalSumUsingMap() {
+        Map<Integer, BigDecimal> map = new HashMap<>();
+        map.put(1, new BigDecimal("45.23"));
+        map.put(2, new BigDecimal("55.43"));
+        map.put(3, new BigDecimal("65.21"));
+        map.put(4, new BigDecimal("35.73"));
 
-            BigDecimal sum = map.values().stream().reduce(BigDecimal.ZERO, (p,q)->p.add(q));
-            System.out.println("Sum:" + sum);
+        BigDecimal sum = map.values().stream().reduce(BigDecimal.ZERO, (p, q) -> p.add(q));
+        System.out.println("Sum:" + sum);
 
-            sum = map.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-            System.out.println("Sum:" + sum);
+        sum = map.values().stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("Sum:" + sum);
 
-            sum = map.values().stream().reduce(BigDecimal.ZERO, Utility::addWeight);
-            System.out.println("Sum:"+ sum);
+        sum = map.values().stream().reduce(BigDecimal.ZERO, Utility::addWeight);
+        System.out.println("Sum:" + sum);
 
-        }
+    }
 
-        private static void bigDecimalSumUsingArray(){
-            BigDecimal b1 = new BigDecimal("45.23");
+    private static void bigDecimalSumUsingArray() {
+        BigDecimal b1 = new BigDecimal("45.23");
         BigDecimal b2 = new BigDecimal("55.43");
         BigDecimal b3 = new BigDecimal("65.21");
         BigDecimal b4 = new BigDecimal("35.73");
@@ -51,17 +51,17 @@ public class BigDecimalSumDemo {
         BigDecimal[] bdArray = {b1, b2, b3, b4};
 
         BigDecimal sum = Arrays.stream(bdArray).reduce(BigDecimal.ZERO, (p, q) -> p.add(q));
-        System.out.println("Sum:"+ sum);
+        System.out.println("Sum:" + sum);
 
         sum = Arrays.stream(bdArray).reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.println("Sum:" + sum);
 
         sum = Arrays.stream(bdArray).reduce(BigDecimal.ZERO, Utility::addWeight);
-        System.out.println("Sum:"+sum);
+        System.out.println("Sum:" + sum);
 
     }
 
-    private static void bigDecimalSumUsingList(){
+    private static void bigDecimalSumUsingList() {
 
         Person2 p1 = new Person2("AAA", new BigDecimal("45.23"));
         Person2 p2 = new Person2("BBB", new BigDecimal("55.43"));
@@ -70,7 +70,7 @@ public class BigDecimalSumDemo {
 
         List<Person2> list = Arrays.asList(p1, p2, p3, p4);
         BigDecimal sum = list.stream().map(Person2::getWeight).reduce(BigDecimal.ZERO, BigDecimal::add);
-        System.out.println("Sum:"+sum);
+        System.out.println("Sum:" + sum);
 
         sum = list.stream().map(p -> p.getWeight()).reduce(BigDecimal.ZERO, (b1, b2) -> b1.add(b2));
         System.out.println("Sum:" + sum);

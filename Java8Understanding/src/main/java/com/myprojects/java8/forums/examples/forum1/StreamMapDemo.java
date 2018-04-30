@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class StreamMapDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //Convert Map to List using Stream map()
         mapToList();
@@ -19,7 +19,7 @@ public class StreamMapDemo {
         mapToIntDemo();
     }
 
-    private static void mapToIntDemo(){
+    private static void mapToIntDemo() {
         Employee e1 = new Employee(1, 20);
         Employee e2 = new Employee(2, 15);
         Employee e3 = new Employee(3, 30);
@@ -29,24 +29,24 @@ public class StreamMapDemo {
         System.out.println("Sum:" + sum);
     }
 
-    private static void listToAnotherList(){
+    private static void listToAnotherList() {
         //convert a List of an object into another List of different object using Stream.map() as an intermediate operation
-    Person p1 = new Person(1, "Mohan", "student");
-    Person p2 = new Person(2, "Sohan", "teacher");
-    Person p3 = new Person(3, "Dinesh", "student");
+        Person p1 = new Person(1, "Mohan", "student");
+        Person p2 = new Person(2, "Sohan", "teacher");
+        Person p3 = new Person(3, "Dinesh", "student");
 
-    List<Person> personList = Arrays.asList(p1, p2, p3);
+        List<Person> personList = Arrays.asList(p1, p2, p3);
 
-    List<AnotherPerson> stdList = personList.stream()
-            .filter(p -> p.getPersonType().equals("student"))
-            .map(p -> new AnotherPerson(p.getId(), p.getName()))
-            .collect(Collectors.toList());
+        List<AnotherPerson> stdList = personList.stream()
+                .filter(p -> p.getPersonType().equals("student"))
+                .map(p -> new AnotherPerson(p.getId(), p.getName()))
+                .collect(Collectors.toList());
 
-        stdList.forEach(e->System.out.println("Id:"+e.getId()+", Name:" + e.getName()));
+        stdList.forEach(e -> System.out.println("Id:" + e.getId() + ", Name:" + e.getName()));
 
-}
+    }
 
-    private static void mapToList(){
+    private static void mapToList() {
         Map<Integer, String> map = new HashMap<>();
         map.put(111, "LalKrishna");
         map.put(154, "Atal");
@@ -55,11 +55,10 @@ public class StreamMapDemo {
 
         List<User> list = map.entrySet().stream()
                 .sorted(Comparator.comparing(e -> e.getKey()))
-                .map(e -> new User(e.getKey(),e.getValue()))
+                .map(e -> new User(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
-        list.forEach(l -> System.out.println("Name:" + l.getName() +", Id:" + l.getId()));
+        list.forEach(l -> System.out.println("Name:" + l.getName() + ", Id:" + l.getId()));
     }
-
 
 
 }

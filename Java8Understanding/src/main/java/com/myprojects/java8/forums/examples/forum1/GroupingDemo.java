@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 public class GroupingDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //Collectors GroupingBy
         collectorsGroupingBy();
 
     }
 
-    private static void collectorsGroupingBy(){
+    private static void collectorsGroupingBy() {
         GroupingDemoStudent s1 = new GroupingDemoStudent("Ram", 20, "A");
         GroupingDemoStudent s2 = new GroupingDemoStudent("Shyam", 22, "B");
         GroupingDemoStudent s3 = new GroupingDemoStudent("Mohan", 22, "A");
@@ -29,17 +29,17 @@ public class GroupingDemo {
         Map<String, List<GroupingDemoStudent>> stdByClass = list.stream().collect(Collectors.groupingBy(GroupingDemoStudent::getClassName));
         stdByClass
                 .forEach(
-                        (k,v)-> System.out.println("Key:"+k+" "+((List<GroupingDemoStudent>)v)
+                        (k, v) -> System.out.println("Key:" + k + " " + ((List<GroupingDemoStudent>) v)
                                 .stream()
-                                .map(m->m.getName())
+                                .map(m -> m.getName())
                                 .collect(Collectors.joining(","))));
 
         //Group Students on the basis of age
         Map<Integer, List<GroupingDemoStudent>> stdByAge = list.stream().collect(Collectors.groupingBy(GroupingDemoStudent::getAge));
         stdByAge.forEach(
-                (k,v)-> System.out.println("Key:" + k + " "+((List<GroupingDemoStudent>)v)
+                (k, v) -> System.out.println("Key:" + k + " " + ((List<GroupingDemoStudent>) v)
                         .stream()
-                        .map(m->m.getName())
+                        .map(m -> m.getName())
                         .collect(Collectors.joining(",")))
         );
 

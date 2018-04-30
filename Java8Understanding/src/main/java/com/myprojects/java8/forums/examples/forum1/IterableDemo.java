@@ -11,7 +11,7 @@ import java.util.function.UnaryOperator;
 
 public class IterableDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //forEach
         forEachDemo();
@@ -27,13 +27,13 @@ public class IterableDemo {
 
     }
 
-    private static void sortDemo(){
+    private static void sortDemo() {
         List<AnotherPerson> list = new ArrayList<>();
         list.add(new AnotherPerson(1, "Mahesh"));
         list.add(new AnotherPerson(2, "Ram"));
         list.add(new AnotherPerson(3, "Krishna"));
 
-        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("id:" + p.getId() +", Name:" + p.getName());
+        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("id:" + p.getId() + ", Name:" + p.getName());
         System.out.println("--Before Sorting --");
 
         list.forEach(style);
@@ -45,13 +45,13 @@ public class IterableDemo {
 
     }
 
-    private static  void replaceAll(){
+    private static void replaceAll() {
         List<AnotherPerson> list = new ArrayList<>();
         list.add(new AnotherPerson(1, "Mahesh"));
         list.add(new AnotherPerson(2, "Ram"));
         list.add(new AnotherPerson(3, "Krishna"));
 
-        Consumer<AnotherPerson> style = (AnotherPerson p ) -> System.out.println("id:"+p.getId()+", Name:"+p.getName());
+        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("id:" + p.getId() + ", Name:" + p.getName());
         System.out.println("--Before replaceAll--");
 
         list.forEach(style);
@@ -64,19 +64,19 @@ public class IterableDemo {
 
     }
 
-    private static AnotherPerson modifyName(AnotherPerson p){
+    private static AnotherPerson modifyName(AnotherPerson p) {
         p.setName(p.getName().concat(" -God"));
 
         return p;
     }
 
-    private static  void removeIfDemo(){
+    private static void removeIfDemo() {
         List<AnotherPerson> list = new ArrayList<>();
         list.add(new AnotherPerson(1, "Mahesh"));
         list.add(new AnotherPerson(2, "Ram"));
         list.add(new AnotherPerson(3, "Krishna"));
 
-        Consumer<AnotherPerson> style = (AnotherPerson p ) -> System.out.println("id:"+p.getId()+", Name:"+p.getName());
+        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("id:" + p.getId() + ", Name:" + p.getName());
         System.out.println("--Before Delete--");
 
         list.forEach(style);
@@ -90,13 +90,13 @@ public class IterableDemo {
 
     }
 
-    private static void forEachDemo(){
+    private static void forEachDemo() {
         List<AnotherPerson> list = new ArrayList<>();
         list.add(new AnotherPerson(1, "Mahesh"));
         list.add(new AnotherPerson(2, "Ram"));
         list.add(new AnotherPerson(3, "Krishna"));
 
-        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("Id:"+p.getId()+", Name:" + p.getName());
+        Consumer<AnotherPerson> style = (AnotherPerson p) -> System.out.println("Id:" + p.getId() + ", Name:" + p.getName());
         list.forEach(style);
     }
 

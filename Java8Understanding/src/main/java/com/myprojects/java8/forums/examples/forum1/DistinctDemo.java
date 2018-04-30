@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DistinctDemo {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         //distinct simple demo
         distinctSimpleDemo();
@@ -25,7 +25,7 @@ public class DistinctDemo {
         distinctByProperty();
     }
 
-    private static void distinctSimpleDemo(){
+    private static void distinctSimpleDemo() {
         List<String> list = Arrays.asList("AA", "BB", "CC", "BB", "CC", "AA", "AA");
         long l = list.stream().distinct().count();
 
@@ -35,7 +35,7 @@ public class DistinctDemo {
         System.out.println(output);
     }
 
-    private static void distinctWithUserObjects(){
+    private static void distinctWithUserObjects() {
         List<Book> list = new ArrayList<>();
         {
             list.add(new Book("Core Java", 200));
@@ -48,10 +48,10 @@ public class DistinctDemo {
 
         long l = list.stream().distinct().count();
         System.out.println("No. of distinct books:" + l);
-        list.stream().distinct().forEach(b -> System.out.println(b.getName()+ "," + b.getPrice()));
+        list.stream().distinct().forEach(b -> System.out.println(b.getName() + "," + b.getPrice()));
     }
 
-    private static void distinctByProperty(){
+    private static void distinctByProperty() {
         List<Book> list = new ArrayList<>();
         {
             list.add(new Book("Core Java", 200));
@@ -62,12 +62,12 @@ public class DistinctDemo {
         }
 
         list.stream().filter(distinctByKey(b -> b.getName()))
-                .forEach(b -> System.out.println(b.getName()+ "," + b.getPrice()));
+                .forEach(b -> System.out.println(b.getName() + "," + b.getPrice()));
     }
 
     private static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
 //        This method returns Predicate instance that maintains state about what is seen previously using ConcurrentHashMap.
-        Map<Object,Boolean> seen = new ConcurrentHashMap<>();
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 }

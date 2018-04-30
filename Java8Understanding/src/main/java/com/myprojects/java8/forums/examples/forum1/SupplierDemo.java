@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 public class SupplierDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
         //BooleanSupplier
         booleanSupplierExample();
 
@@ -34,49 +34,49 @@ public class SupplierDemo {
 
     }
 
-    private static void supplierWithStream(){
+    private static void supplierWithStream() {
         List<SupplierItem> list = new ArrayList<>();
         list.add(new SupplierItem("AA"));
         list.add(new SupplierItem("BB"));
         list.add(new SupplierItem("CC"));
 
         Stream<String> names = list.stream().map(SupplierItem::getName);
-        names.forEach(n-> System.out.println(n));
+        names.forEach(n -> System.out.println(n));
 
     }
 
-    private static void supplierFetchMethod(){
+    private static void supplierFetchMethod() {
         Supplier<String> supplier = SupplierItem::getStaticVal;
         String val = supplier.get();
-        System.out.println("Calling Method:"+val);
+        System.out.println("Calling Method:" + val);
     }
 
-    private static void supplierReturnObject(){
+    private static void supplierReturnObject() {
         Supplier<SupplierItem> supplier = SupplierItem::new;
         SupplierItem item = supplier.get();
         System.out.println(item.getMsg());
     }
 
-    private static void doubleSupplier(){
+    private static void doubleSupplier() {
         Item item = new Item(true, 123);
         DoubleSupplier ds = item::getVal;
         System.out.println("Double Value:" + ds.getAsDouble());
 
     }
 
-    private static void longSupplier(){
+    private static void longSupplier() {
         Item item = new Item(true, 123);
         LongSupplier ls = item::getVal;
         System.out.println("Long Val:" + ls.getAsLong());
     }
 
-    private static void intSupplierExample(){
+    private static void intSupplierExample() {
         Item item = new Item(true, 123);
         IntSupplier is = item::getVal;
-        System.out.println("Int Value:"+ is.getAsInt());
+        System.out.println("Int Value:" + is.getAsInt());
     }
 
-    private static void booleanSupplierExample(){
+    private static void booleanSupplierExample() {
         Item item = new Item(true, 123);
         BooleanSupplier bs = item::isStatus;
         System.out.println(bs.getAsBoolean());

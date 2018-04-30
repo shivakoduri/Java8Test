@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 
 public class PartitioningDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //collectors partitioningBy
         collectorsPartioningBy();
     }
 
-    private static void collectorsPartioningBy(){
+    private static void collectorsPartioningBy() {
         List<Student> list = new ArrayList<>();
         list.add(new Student(1, "Ram", 18));
         list.add(new Student(2, "Shyam", 22));
@@ -26,9 +26,9 @@ public class PartitioningDemo {
 
         //partition of Student on the basis of age
         System.out.println("--Partition of Student on the basis of age>20");
-        Map<Boolean, List<Student>> stdByClass = list.stream().collect(Collectors.partitioningBy(s-> s.getAge() >20));
+        Map<Boolean, List<Student>> stdByClass = list.stream().collect(Collectors.partitioningBy(s -> s.getAge() > 20));
         stdByClass
-                .forEach((k,v) -> System.out.println("Key:" + k +" " + ((List<Student>)v).stream().map(s->s.getName()).collect(Collectors.joining(","))));
+                .forEach((k, v) -> System.out.println("Key:" + k + " " + ((List<Student>) v).stream().map(s -> s.getName()).collect(Collectors.joining(","))));
 
 
     }

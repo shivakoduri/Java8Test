@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class AdvancedStreamExamples {
 
-    public static List<PeekObject> limit_shortCircuiting(List<String> stringList, int limit){
+    public static List<PeekObject> limit_shortCircuiting(List<String> stringList, int limit) {
         return stringList
                 .stream()
                 .map(PeekObject::new)
@@ -20,7 +20,7 @@ public class AdvancedStreamExamples {
                 .collect(Collectors.toList());
     }
 
-    public static List<PeekObject> sorted_notShotCircuting(List<String> stringList, int limit){
+    public static List<PeekObject> sorted_notShotCircuting(List<String> stringList, int limit) {
         return stringList
                 .stream()
                 .map(PeekObject::new)
@@ -30,7 +30,7 @@ public class AdvancedStreamExamples {
     }
 
 
-    public static Map<Long, Long> splitToMap(List<String> stringList){
+    public static Map<Long, Long> splitToMap(List<String> stringList) {
         return stringList.stream()
                 .filter(StringUtils::isNotEmpty)
                 .map(line -> line.split(","))
@@ -39,10 +39,10 @@ public class AdvancedStreamExamples {
                         array -> Long.valueOf(array[1]), (first, second) -> first));
     }
 
-    public static List<String> gatherEmployeeSkills(List<Employeee> employees, Position... positions){
+    public static List<String> gatherEmployeeSkills(List<Employeee> employees, Position... positions) {
         positions = positions == null || positions.length == 0 ? Position.values() : positions;
         List<Position> searchPositions = Arrays.stream(positions).collect(Collectors.toList());
-        return employees == null ? Collections.emptyList():
+        return employees == null ? Collections.emptyList() :
                 employees
                         .stream()
                         .filter(employee -> searchPositions.contains(employee.getPosition()))

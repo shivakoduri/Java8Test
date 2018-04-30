@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class StringJoinerDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         stringJoinerExampleOne();
 
@@ -12,7 +12,7 @@ public class StringJoinerDemo {
 
     }
 
-    private static void stringJoinerExampleTwo(){
+    private static void stringJoinerExampleTwo() {
         StringJoiner sjObj = new StringJoiner(",", "{", "}");
         //Add element
         sjObj.add("AA").add("BB").add("CC").add("DD").add("E");
@@ -32,7 +32,7 @@ public class StringJoinerDemo {
         System.out.println("Length of Final String:" + finalSj.length());
     }
 
-    private static void stringJoinerExampleOne(){
+    private static void stringJoinerExampleOne() {
         //StringJoiner(CharSequence d)
         //This constructor uses a delimiter to separate the added element.
 

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class CollectorsToMapDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //List to Map with Key Mapper and Value Mapper
         listToMap1();
@@ -27,40 +27,40 @@ public class CollectorsToMapDemo {
 
     }
 
-    private static void listToMapWithSupplier(){
+    private static void listToMapWithSupplier() {
         // pass map with supplier in the toMap() method.
         // if want to return LinkedHashMap, need to pass supplier as LinkedHashMap::new
 
         // toMap(Function keyMapper, Function valueMapper, BinaryOperator mergeFunction, Supplier mapSupplier)
-        LinkedHashMap<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x,y) -> x+", "+y, LinkedHashMap::new));
-        map.forEach((x,y) -> System.out.println("Key:"+x+", Value:"+y));
+        LinkedHashMap<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x, y) -> x + ", " + y, LinkedHashMap::new));
+        map.forEach((x, y) -> System.out.println("Key:" + x + ", Value:" + y));
 
     }
 
-    private static void listToMapWithBinaryOperator(){
+    private static void listToMapWithBinaryOperator() {
         //pass BinaryOperator as merge function. When the toMap() method finds duplicate keys then the values are merged and does not throw exception.
 
-        Map<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x,y) -> x+", "+y));
-        map.forEach((x,y) -> System.out.println("Key:" + x + ", Value:" + y));
+        Map<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName, (x, y) -> x + ", " + y));
+        map.forEach((x, y) -> System.out.println("Key:" + x + ", Value:" + y));
     }
 
-    private static void listToMap2(){
+    private static void listToMap2() {
 
         Map<Integer, String> map = getPersonListData().stream().collect(Collectors.toMap(Person1::getId, Person1::getName));
-        map.forEach((x,y) -> System.out.println("Key:" + x +", Value:" + y));
+        map.forEach((x, y) -> System.out.println("Key:" + x + ", Value:" + y));
 
         //if keys will be duplicate then, will throw IllegalStateException. To Solve it, pass merge function as BinaryOperator
     }
 
-    private static void listToMap1(){
+    private static void listToMap1() {
         // pass mapping function of key mapper and value mapper.
         // toMap(Function keyMapper, Function valueMapper)
 
-        Map<String, Object> map = getStringListData().stream().collect(Collectors.toMap(Function.identity(), s->s));
-        map.forEach((x,y) -> System.out.println());
+        Map<String, Object> map = getStringListData().stream().collect(Collectors.toMap(Function.identity(), s -> s));
+        map.forEach((x, y) -> System.out.println());
     }
 
-    private static List<Person1> getPersonListData(){
+    private static List<Person1> getPersonListData() {
         List<Person1> list = new ArrayList<>();
         list.add(new Person1(100, "Mohan"));
         list.add(new Person1(200, "Sohan"));
@@ -69,7 +69,7 @@ public class CollectorsToMapDemo {
         return list;
     }
 
-    private static List<String> getStringListData(){
+    private static List<String> getStringListData() {
         List<String> list = new ArrayList<>();
         list.add("Mohan");
         list.add("Sohan");

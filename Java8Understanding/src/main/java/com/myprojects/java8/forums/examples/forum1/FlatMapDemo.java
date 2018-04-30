@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 public class FlatMapDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         // FlatMap with List
         flatMapWithList();
@@ -39,7 +39,7 @@ public class FlatMapDemo {
 
     }
 
-    private static void optionalFlatMap(){
+    private static void optionalFlatMap() {
         //Optional has been introduced in Java 8. It behaves like a container that may keep non-null value.
         // It handles NullPointerException. flatMap is applied only if value is present.
 
@@ -52,12 +52,12 @@ public class FlatMapDemo {
 
     }
 
-    private static void flatMapWithFile(){
+    private static void flatMapWithFile() {
         //Files.lines() has been introduced in Java 8
         Stream<String> lines = null;
-        try{
+        try {
             lines = Files.lines(Paths.get(ClassLoader.getSystemResource("info.txt").toURI()), StandardCharsets.UTF_8);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class FlatMapDemo {
 
     }
 
-    private static void flatMapWithArrayOfObject(){
+    private static void flatMapWithArrayOfObject() {
         List<Book> books = Arrays.asList(new Book("AAA", 10), new Book("BBB", 20));
         Writer w1 = new Writer("Mohan", books);
 
@@ -88,26 +88,26 @@ public class FlatMapDemo {
 
         Book book = Arrays.stream(writerArray).flatMap(row -> Arrays.stream(row)).flatMap(writer -> writer.getBooks().stream()).max(new BookComparator()).get();
 
-        System.out.println("Name:" + book.getName()+", Price:" + book.getPrice());
+        System.out.println("Name:" + book.getName() + ", Price:" + book.getPrice());
 
     }
 
-    private static void flatMapWithArray(){
-        Integer[][] data = {{1,2}, {3,4}, {5,6}};
-        Arrays.stream(data).flatMap(row -> Arrays.stream(row)).filter(num -> num%2 == 0).forEach(System.out::println);
+    private static void flatMapWithArray() {
+        Integer[][] data = {{1, 2}, {3, 4}, {5, 6}};
+        Arrays.stream(data).flatMap(row -> Arrays.stream(row)).filter(num -> num % 2 == 0).forEach(System.out::println);
     }
 
-    private static void flatMapWithListOfList(){
+    private static void flatMapWithListOfList() {
         List<Book> list1 = Arrays.asList(new Book("AAA", 10), new Book("BBB", 20));
         List<Book> list2 = Arrays.asList(new Book("YYY", 30), new Book("ZZZ", 15));
         List<List<Book>> finalList = Arrays.asList(list1, list2);
 
         Book book = finalList.stream().flatMap(list -> list.stream()).min(new BookComparator()).get();
-        System.out.println("Name:" + book.getName() +", Price:" + book.getPrice());
+        System.out.println("Name:" + book.getName() + ", Price:" + book.getPrice());
 
     }
 
-    private static void flatMapWithList(){
+    private static void flatMapWithList() {
         List<Book> books = Arrays.asList(new Book("AAA", 10), new Book("BBB", 20));
         Writer w1 = new Writer("Mohan", books);
 
@@ -117,7 +117,7 @@ public class FlatMapDemo {
         List<Writer> writers = Arrays.asList(w1, w2);
         Book book = writers.stream().flatMap(writer -> writer.getBooks().stream()).max(new BookComparator()).get();
 
-        System.out.println("Name:"+ book.getName() +", Price:" + book.getPrice());
+        System.out.println("Name:" + book.getName() + ", Price:" + book.getPrice());
     }
 
 

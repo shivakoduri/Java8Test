@@ -7,7 +7,7 @@ import java.util.function.*;
 
 public class ParallelPrefixDemo {
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
         //Arrays.parallelPrefix() with Array of Objects
         parallelPrefixDemo();
@@ -16,16 +16,16 @@ public class ParallelPrefixDemo {
         parallelPrefixDemoWithPrimitiveData();
     }
 
-    private static void parallelPrefixDemoWithPrimitiveData(){
-        int[] intNum1 = {3,4,2,5,1,6,3};
+    private static void parallelPrefixDemoWithPrimitiveData() {
+        int[] intNum1 = {3, 4, 2, 5, 1, 6, 3};
         IntBinaryOperator intOpt = (i1, i2) -> i1 * i2;
         System.out.println("parallel prefix for complete array");
         Arrays.parallelPrefix(intNum1, intOpt);
-        IntConsumer intCon = i-> System.out.println(i+" ");
+        IntConsumer intCon = i -> System.out.println(i + " ");
         Arrays.stream(intNum1).forEach(intCon);
 
         System.out.println("\nparallel prefix for array from index 1 to 4");
-        int[] intNum2 = {3,4,2,5,1,6,3};
+        int[] intNum2 = {3, 4, 2, 5, 1, 6, 3};
         Arrays.parallelPrefix(intNum2, 1, 4, intOpt);
         Arrays.stream(intNum2).forEach(intCon);
 
@@ -43,14 +43,14 @@ public class ParallelPrefixDemo {
 
     }
 
-    private static void parallelPrefixDemo(){
+    private static void parallelPrefixDemo() {
         BinaryOperator<Floor> opt = (f1, f2) -> new Floor(f1.getLength() + f2.getLength(), f1.getWidth() + f2.getWidth());
         Floor[] floors = Floor.getFloorSizes();
 
         System.out.println("parallel prefix for complete array");
         Arrays.parallelPrefix(floors, opt);
 
-        Consumer<Floor> print = f-> System.out.println(f.getLength()+", "+f.getWidth());
+        Consumer<Floor> print = f -> System.out.println(f.getLength() + ", " + f.getWidth());
         Arrays.stream(floors).forEach(print);
 
         System.out.println("parallel prefix for array from index 1 to 4");

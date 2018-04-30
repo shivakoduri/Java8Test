@@ -19,7 +19,7 @@ public class RandomDemo {
 
     }
 
-    public static void main(String... args){
+    public static void main(String... args) {
         //java.util.Random
         randomDemo();
 
@@ -27,23 +27,23 @@ public class RandomDemo {
         secureRandomeDemo();
     }
 
-    private static void secureRandomeDemo(){
+    private static void secureRandomeDemo() {
         int passwordLength = 8;
 
         System.out.println("--Generated Password--");
-        for(int i=0; i<5; i++){
-            new SecureRandom().ints(passwordLength, 0, VALID_PWD_CHARS.size()).map(VALID_PWD_CHARS::get).forEach(s-> System.out.print((char)s));
+        for (int i = 0; i < 5; i++) {
+            new SecureRandom().ints(passwordLength, 0, VALID_PWD_CHARS.size()).map(VALID_PWD_CHARS::get).forEach(s -> System.out.print((char) s));
             System.out.println();
         }
     }
 
 
-    private static void randomDemo(){
+    private static void randomDemo() {
         int passwordLength = 8;
         System.out.println("--Generated Password--");
 
-        for(int i=0;i<5;i++){
-            new Random().ints(passwordLength, 0 , VALID_PWD_CHARS.size()).map(VALID_PWD_CHARS::get).forEach(s -> System.out.print((char)s));
+        for (int i = 0; i < 5; i++) {
+            new Random().ints(passwordLength, 0, VALID_PWD_CHARS.size()).map(VALID_PWD_CHARS::get).forEach(s -> System.out.print((char) s));
             System.out.println();
         }
 

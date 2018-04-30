@@ -28,7 +28,7 @@ public class ConcatenateStreamsDemo {
         concatenateSets();
     }
 
-    private static void concatenateArrays(){
+    private static void concatenateArrays() {
         Book[] bk1 = new Book[3];
         Book[] bk2 = new Book[3];
         {
@@ -40,19 +40,19 @@ public class ConcatenateStreamsDemo {
             bk2[2] = new Book("Learning Hibernate", 400);
         }
         Book[] bks = (Book[]) Stream.concat(Stream.of(bk1), Stream.of(bk2)).toArray(b -> new Book[b]);
-        for(Book b : bks) {
-            System.out.println(b.getName()+", "+ b.getPrice());
+        for (Book b : bks) {
+            System.out.println(b.getName() + ", " + b.getPrice());
         }
 
         //Remove duplicates using distinct()
         System.out.println("--Remove duplicates using distinct()--");
         bks = (Book[]) Stream.concat(Stream.of(bk1), Stream.of(bk2)).distinct().toArray(b -> new Book[b]);
-        for(Book b : bks) {
-            System.out.println(b.getName()+", "+ b.getPrice());
+        for (Book b : bks) {
+            System.out.println(b.getName() + ", " + b.getPrice());
         }
     }
 
-    private static void concatenateSets(){
+    private static void concatenateSets() {
         Set<Book> set1 = new HashSet<>();
         Set<Book> set2 = new HashSet<>();
         {
@@ -65,26 +65,26 @@ public class ConcatenateStreamsDemo {
             set2.add(new Book("Learning Hibernate", 400));
         }
         Set<Book> set = Stream.concat(set1.stream(), set2.stream()).collect(Collectors.toSet());
-        set.forEach(b->System.out.println(b.getName()+", "+ b.getPrice()));
+        set.forEach(b -> System.out.println(b.getName() + ", " + b.getPrice()));
 
     }
 
-    private static void concatenateStreams(){
+    private static void concatenateStreams() {
         Stream<String> s1 = Stream.of("AA", "BB", "CC");
         Stream<String> s2 = Stream.of("AA", "BB", "DD");
         Stream<String> s = Stream.concat(s1, s2);
-        s.forEach(e->System.out.print(e+" "));
+        s.forEach(e -> System.out.print(e + " "));
 
         //Remove duplicates using distinct()
         s1 = Stream.of("AA", "BB", "CC");
         s2 = Stream.of("AA", "BB", "DD");
         System.out.println("\nRemove duplicates using distinct()");
         s = Stream.concat(s1, s2).distinct();
-        s.forEach(e->System.out.print(e+" "));
+        s.forEach(e -> System.out.print(e + " "));
     }
 
 
-    private static void concatenateLists(){
+    private static void concatenateLists() {
         List<Book> list1 = new ArrayList<>();
         List<Book> list2 = new ArrayList<>();
         {
@@ -97,12 +97,12 @@ public class ConcatenateStreamsDemo {
             list2.add(new Book("Learning Hibernate", 400));
         }
         List<Book> list = Stream.concat(list1.stream(), list2.stream()).collect(Collectors.toList());
-        list.forEach(b->System.out.println(b.getName()+", "+ b.getPrice()));
+        list.forEach(b -> System.out.println(b.getName() + ", " + b.getPrice()));
 
         //Remove duplicates using distinct()
         System.out.println("--Remove duplicates using distinct()--");
         list = Stream.concat(list1.stream(), list2.stream()).distinct().collect(Collectors.toList());
-        list.forEach(b->System.out.println(b.getName()+", "+ b.getPrice()));
+        list.forEach(b -> System.out.println(b.getName() + ", " + b.getPrice()));
 
     }
 
